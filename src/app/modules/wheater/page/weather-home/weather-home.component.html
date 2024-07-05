@@ -1,0 +1,52 @@
+
+  <!-- Types of data binding
+        Angular provides three categories of data binding according to the direction of data flow:
+        From source to view
+        From view to source
+        In a two-way sequence of view to source to view -->
+        <!-- Binding types other than interpolation have a target name to the left of the equal sign. The target of a binding is a
+        property or event, which you surround with square bracket ([ ]) characters, parenthesis (( )) characters, or both ([( )]) characters.
+        The binding punctuation of [], (), [()], and the prefix specify the direction of data flow.
+        Use [] to bind from source to view ()
+        Use () to bind from view to source
+        Use [()] to bind in a two-way sequence of view to source to view -->
+
+<div class="search">
+    <!-- (submit)="onSubmit": Use () to bind from view to source -->
+    <form #form="ngForm" (submit)="onSubmit()">
+      <input type="text"
+      placeholder="Buscar localização"
+      name="city"
+      [(ngModel)]="initialCityName"
+      />
+      <!-- Use [()] to bind in a two-way sequence of view to source to view -->
+      <!-- o array [disabled]="!initialCityName" faz um "binding" com a propriedade no arquivo ts, obtem o valor da variável e usa-o-->
+     <!-- [(ngModel)] = "initialCityName" associa o valor da variável por meio de "two-way data binding"
+      e também se associam compartilhando os valores e se atualizando, observando as modificações -->
+      <span (click)="onSubmit()">
+        <!-- (click)="onSubmit()": Use () to bind from view to source -->
+        <fa-icon
+          animation="fade"
+          style="--fa-animation-duration: 5s; cursor: pointer;"
+          size="lg"
+          class="search-icon"
+          [icon]="searchIcon"
+        ></fa-icon>
+        <!-- [icon]="searchIcon" faz um bind com variável e recebe o icone respectivo, setando o componente HTML -->
+        <!-- Use [] to bind from source to view -->
+
+      </span>
+    </form>
+</div>
+
+<!-- componente Smart (weather-home) é um componente smart, pois gera seus próprios dados e não depende de dados de outros componentes -->
+
+<!-- (weather-card): componente filho, o componente atual (weather-home) que o possui é o componente pai! -->
+ <!-- Dumb componente (weather-card) necessita de dados que devem ser repassados e alimentados para ser utilizado -->
+  <!-- Smart components alimentam Dumb components com seus dados -->
+<!-- inputs e outputs servem para fazer essa comunicação entre componentes no Angular! -->
+<!-- [nomeInput]="valor" passa o valor do dado desejado para o input do component Dumb e o alimenta -->
+ <!-- *ngIf="weatherDatas", estabelece uma condição para o componente ser carregado/renderizado
+   apenas quando houver dados no weatherDatas -->
+  <!-- *ngDiretiva fornece diretivas do próprio Angular para lidar com situações como essa -->
+<app-weather-card [weatherDatas]="weatherDatas" *ngIf="weatherDatas"></app-weather-card>
